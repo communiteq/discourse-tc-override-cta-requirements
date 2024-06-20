@@ -7,3 +7,6 @@ prompt_topics:
 prompt_hide_duration_minutes:
   default: 1440
   type: integer
+console_decision_logging:
+  default: false
+  type: bool

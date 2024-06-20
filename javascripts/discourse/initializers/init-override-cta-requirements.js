@@ -47,12 +47,20 @@ export default {
 
           const now = Date.now();
           const hiddenAt = keyValueStore.getInt("anon-cta-hidden", 0);
-          if (hiddenAt > now - (settings.prompt_hide_duration_minutes * 60000)) {
+          const threshold = now - (settings.prompt_hide_duration_minutes * 60000);
+          if (settings.console_decision_logging) {
+            console.log("Signup CTA: hiddenAt: " + hiddenAt + " - threshold: " + threshold);
+          }
+          if (hiddenAt > threshold) {
             return; // hidden in last x minutes
           }
 
           const readTime = keyValueStore.getInt("anon-topic-time");
-          if (readTime < (settings.prompt_read_time_minutes * 60000)) {
+          const requiredReadTime = (settings.prompt_read_time_minutes * 60000)
+          if (settings.console_decision_logging) {
+            console.log("Signup CTA: readTime: " + readTime + " - threshold: " + requiredReadTime);
+          }
+          if (readTime < requiredReadTime) {
             return;
           }
 
@@ -61,6 +69,9 @@ export default {
             return;
           }
           let topicIdsAry = topicIdsString.split(",");
+          if (settings.console_decision_logging) {
+            console.log("Signup CTA: topic count: " + topicIdsAry.length + " - threshold: " + settings.prompt_topics);
+          }
           if (topicIdsAry.length < settings.prompt_topics) {
             return;
           }
