@@ -1,6 +1,6 @@
 prompt_read_time_minutes:
   default: 2
-  type: integer
+  type: float
 prompt_topics:
   default: 2
   type: integer

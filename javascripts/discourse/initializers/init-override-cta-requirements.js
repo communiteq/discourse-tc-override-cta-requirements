@@ -58,7 +58,7 @@ export default {
           const readTime = keyValueStore.getInt("anon-topic-time");
           const requiredReadTime = (settings.prompt_read_time_minutes * 60000)
           if (settings.console_decision_logging) {
-            console.log("Signup CTA: readTime: " + readTime + " - threshold: " + requiredReadTime);
+            console.log("Signup CTA: readTime: " + Math.floor(readTime/1000) + "s - threshold: " + Math.floor(requiredReadTime/1000)+"s");
           }
           if (readTime < requiredReadTime) {
             return;
