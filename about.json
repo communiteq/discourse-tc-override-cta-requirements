@@ -1,4 +1,7 @@
 {
   "name": "CTA requirements override",
-  "component": true
+  "component": true,
+  "authors": "Communiteq",
+  "about_url": "https://github.com/communiteq/discourse-tc-override-cta-requirements#readme",
+  "license_url": "https://github.com/communiteq/discourse-tc-override-cta-requirements/blob/main/LICENSE"
 }
