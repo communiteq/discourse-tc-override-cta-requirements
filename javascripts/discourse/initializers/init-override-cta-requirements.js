@@ -49,7 +49,7 @@ export default {
           const hiddenAt = keyValueStore.getInt("anon-cta-hidden", 0);
           const threshold = now - (settings.prompt_hide_duration_minutes * 60000);
           if (settings.console_decision_logging) {
-            console.log("Signup CTA: hiddenAt: " + hiddenAt + " - threshold: " + threshold);
+            console.log("Signup CTA: hiddenAt: " + new Date(hiddenAt).toISOString() + " should be earlier than threshold: " + new Date(threshold).toISOString());
           }
           if (hiddenAt > threshold) {
             return; // hidden in last x minutes
@@ -58,7 +58,7 @@ export default {
           const readTime = keyValueStore.getInt("anon-topic-time");
           const requiredReadTime = (settings.prompt_read_time_minutes * 60000)
           if (settings.console_decision_logging) {
-            console.log("Signup CTA: readTime: " + Math.floor(readTime/1000) + "s - threshold: " + Math.floor(requiredReadTime/1000)+"s");
+            console.log("Signup CTA: readTime: " + Math.floor(readTime/1000) + "s should be larger than threshold: " + Math.floor(requiredReadTime/1000)+"s");
           }
           if (readTime < requiredReadTime) {
             return;
@@ -70,7 +70,7 @@ export default {
           }
           let topicIdsAry = topicIdsString.split(",");
           if (settings.console_decision_logging) {
-            console.log("Signup CTA: topic count: " + topicIdsAry.length + " - threshold: " + settings.prompt_topics);
+            console.log("Signup CTA: topic count: " + topicIdsAry.length + " should be larger than or equal to threshold: " + settings.prompt_topics);
           }
           if (topicIdsAry.length < settings.prompt_topics) {
             return;
